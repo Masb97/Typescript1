@@ -1,3 +1,5 @@
+import { Curso } from "./curso";
+
 export enum NivelEducatipo{
     BACHILLERATO = "Bachillerato",
     UNIVERSITARIO = "Universitario",
@@ -6,8 +8,21 @@ export enum NivelEducatipo{
 
 export class Aprendiz{
 
-    constructor(public nombres:string,public apellidos: string, public avatar:string, public edad: number, public nivelEducativo: NivelEducatipo)
+    constructor(public nombres:string,public apellidos: string, public avatar:string, public edad: number, public nivelEducativo: NivelEducatipo, public cursos: Curso[])
     {
 
+    }
+
+    public darCursosCertificados():number{
+        let totalCursosC:number = 0;
+        for(let index = 0; index < this.cursos.length;index++)
+        {
+            let curso:Curso = this.cursos[index];
+            if(curso.certificado)
+            {
+                totalCursosC+=1;
+            }
+        }
+        return totalCursosC;
     }
 }
